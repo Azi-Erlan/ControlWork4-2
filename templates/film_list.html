@@ -1,0 +1,28 @@
+<h1>Фильмы</h1>
+
+<form method="get">
+    <input type="text" name="q" placeholder="Поиск">
+    <button type="submit">Найти</button>
+</form>
+
+{% for genre in genres %}
+    <a href="?genre={{ genre.name }}">#{{ genre.name }}</a>
+{% endfor %}
+
+<br><br>
+
+<a href="/create/">Добавить фильм</a>
+
+<hr>
+
+{% for film in films %}
+    <h3>{{ film.title }} ({{ film.rating }})</h3>
+
+    {% if film.image %}
+        <img src="{{ film.image.url }}" width="200">
+    {% endif %}
+
+    <br>
+    <a href="/film/{{ film.id }}/">Подробнее</a>
+    <hr>
+{% endfor %}
